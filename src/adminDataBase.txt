@@ -1,0 +1,4 @@
+Cesar	Placido Mexico  16/07/94    Masculino
+Gabriel	Islas   Mexico    11/12/93    Masculino
+Antonio	Campos  Ruso    23/05/94    Masculino
+Alberto	morrongo	Escocia	04/05/93	Masculino

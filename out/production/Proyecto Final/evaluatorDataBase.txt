@@ -1,4 +1,6 @@
 Jorge	Cervantes   Argentina  16/07/94    Masculino
-Nicolás	Bravo   Mexico  16/07/94    Masculino
+Nicolás 	Bravo   Mexico  16/07/94    Masculino
 Paul	McCartney   Inglatera  16/07/94    Masculino
 Maria	Cortez	Peru	12/12/12	Femenino
+Stephany	Alexandra	USA	27/07/93	Femenino	
+Guille	Gil	Mexico	03/05/60	Femenino	

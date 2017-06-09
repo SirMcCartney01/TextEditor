@@ -130,25 +130,31 @@ public class PantallaPrincipalEvaluador extends JPanel {
         evaluar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                Object[] options = {"Juicio",
-                        "Apreciacion",
-                        "Afecto"};
 
-                int evaluation = JOptionPane.showOptionDialog(null,"¿Cual es su evaluacion?","Evaluar",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[2]);
-                /**
-                 * Afecto == 2
-                 * Apreciacion == 1
-                 * Juicio == 0
-                 * Cerrar == -1
-                 */
 
                 String selectedText = textArea.getSelectedText();
-                String givenEval = Integer.toString(evaluation);
 
                 if(selectedText == null){
                     JOptionPane.showMessageDialog(null,"Antes de poder evaluar necesitas seleccionar texto","Error",JOptionPane.ERROR_MESSAGE);
                 }else{
-                    gestorDeArchivos.Evaluacion(selectedText, givenEval);
+                    Object[] options = {"Juicio",
+                            "Apreciacion",
+                            "Afecto"};
+
+                    int evaluation = JOptionPane.showOptionDialog(null,"¿Cual es su evaluacion?","Evaluar",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[2]);
+
+                    String givenEval = Integer.toString(evaluation);
+                    /**
+                     * Afecto == 2
+                     * Apreciacion == 1
+                     * Juicio == 0
+                     * Cerrar == -1
+                     */
+
+                    String result = gestorDeArchivos.Evaluacion(selectedText, givenEval);
+                    if(result.equals("failure")){
+                        JOptionPane.showMessageDialog(null,"No fue posible guardar la evaluacion ya que no pude acceder a la ruta, el problema se puede arreglar con reiniciar la sesion","¡Error!",JOptionPane.ERROR_MESSAGE);
+                    }
                 }
 
 

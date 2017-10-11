@@ -7,6 +7,7 @@ import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -63,9 +64,9 @@ public class PantallaPrincipalEvaluador extends JPanel {
         // Create and add the style
         final Style heading2Style = sc.addStyle("Heading2", null);
         heading2Style.addAttribute(StyleConstants.Foreground, Color.black);
-        heading2Style.addAttribute(StyleConstants.FontSize, new Integer(16));
+        heading2Style.addAttribute(StyleConstants.FontSize, 16);
         heading2Style.addAttribute(StyleConstants.FontFamily, "serif");
-        heading2Style.addAttribute(StyleConstants.Bold, new Boolean(true));
+        heading2Style.addAttribute(StyleConstants.Bold, true);
 
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
@@ -77,6 +78,7 @@ public class PantallaPrincipalEvaluador extends JPanel {
                         // Finally, apply the style to the heading
                         doc.setParagraphAttributes(0, 1, heading2Style, false);
                     } catch (BadLocationException e) {
+                        System.err.println("Error: " + e.getMessage());
                     }
                 }
             });
@@ -92,16 +94,16 @@ public class PantallaPrincipalEvaluador extends JPanel {
         openFile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                String fileRout = "/home/cesar/Documents/FCC/Primavera 2017/Ingenieria de Software/Proyecto Final/src/Textos a Evaluar/";
+                String fileRout = new File("./src").getAbsolutePath() + "/Textos a Evaluar/";
 
                 String file = gestorDeArchivos.GestorDeArchivos(fileRout);
 
                 String chosenFile = JOptionPane.showInputDialog(null,file,"Elija archivo",JOptionPane.QUESTION_MESSAGE);
-                /**
+                /*
                  * Awful cheating
-                 */
+                */
                 try{
-                    PrintWriter writer = new PrintWriter("/home/cesar/Documents/FCC/Primavera 2017/Ingenieria de Software/ActiveFile.txt");
+                    PrintWriter writer = new PrintWriter(new File("./src").getAbsolutePath() + "/ActiveFile.txt");
                     writer.println(chosenFile);
                     writer.close();
                 } catch (IOException e) {
@@ -136,20 +138,21 @@ public class PantallaPrincipalEvaluador extends JPanel {
 
                 if(selectedText == null){
                     JOptionPane.showMessageDialog(null,"Antes de poder evaluar necesitas seleccionar texto","Error",JOptionPane.ERROR_MESSAGE);
-                }else{
-                    Object[] options = {"Juicio",
+                }else {
+                    Object[] options = {
+                            "Juicio",
                             "Apreciacion",
                             "Afecto"};
 
                     int evaluation = JOptionPane.showOptionDialog(null,"¿Cual es su evaluacion?","Evaluar",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[2]);
 
                     String givenEval = Integer.toString(evaluation);
-                    /**
+                    /*
                      * Afecto == 2
                      * Apreciacion == 1
                      * Juicio == 0
                      * Cerrar == -1
-                     */
+                    */
 
                     String result = gestorDeArchivos.Evaluacion(selectedText, givenEval);
                     if(result.equals("failure")){

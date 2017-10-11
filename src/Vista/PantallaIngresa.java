@@ -21,8 +21,8 @@ public class PantallaIngresa extends JFrame {
         JTextField user = new JTextField();
         JTextField password = new JPasswordField();
         Object[] message = {
-                "Usuario",user,
-                "Contraseña;",password
+                "Usuario", user,
+                "Contraseña;", password
         };
 
 
@@ -30,15 +30,15 @@ public class PantallaIngresa extends JFrame {
         option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
         String action = Integer.toString(option);
 
-        ControlAcceso acces = new ControlAcceso();
-        String isAdmin = acces.ControlAcceso(user.getText(),password.getText(),action);
+        ControlAcceso access = new ControlAcceso();
+        String isAdmin = access.ControlAccesoDirection(user.getText(), password.getText(), action);
 
 
-        if(isAdmin.equals("invalid")){
+        if(isAdmin.equals("invalid")) {
             JOptionPane.showMessageDialog(null,"Usuario y/o contraseña no validos!","¡Error!",JOptionPane.ERROR_MESSAGE);
         }
 
-        if(isAdmin.equals("failure")){
+        if(isAdmin.equals("failure")) {
             JOptionPane.showMessageDialog(null,"Hubo un problema al intentar accdeder a la base de datos!","Error",JOptionPane.ERROR_MESSAGE);
         }
 
@@ -51,23 +51,23 @@ public class PantallaIngresa extends JFrame {
             container.setLayout(new BorderLayout());
 
             JOptionPane.showMessageDialog(null, "Bienvenido " + user.getText(), "Perfil usuario", JOptionPane.INFORMATION_MESSAGE);
-            /**
+            /*
              * Si el usuario es evaluador
-             * */
-            if(isAdmin == "1"){
+            */
+            if(isAdmin.equals("1")) {
                 PantallaPrincipalEvaluador principalEvaluador = new PantallaPrincipalEvaluador();
                 container.add(principalEvaluador, BorderLayout.CENTER);
             }
 
-            /**
+            /*
              * Si el usuario es administrador
-             * */
-            if(isAdmin == "2"){
+            */
+            if(isAdmin.equals("2")) {
                 PantallaPrincipalAdministrador principalAdministrador = new PantallaPrincipalAdministrador();
                 container.add(principalAdministrador, BorderLayout.CENTER);
 
             }
-        }else{
+        } else {
             Window w = SwingUtilities.getWindowAncestor(frame);
             w.dispose();
         }

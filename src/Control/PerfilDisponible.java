@@ -1,5 +1,7 @@
 package Control;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,10 +11,10 @@ import java.util.Scanner;
  * Created by cesar on 2/05/17.
  */
 public class PerfilDisponible {
-    public String perfilDisponible(String userID){
+    public String perfilDisponible(String userID) {
 
-        String routeAdmin = "/home/cesar/Documents/FCC/Primavera 2017/Ingenieria de Software/Proyecto Final/src/adminDataBase.txt";
-        String routeEval = "/home/cesar/Documents/FCC/Primavera 2017/Ingenieria de Software/Proyecto Final/src/evaluatorDataBase.txt";
+        String routeAdmin = new File("./src").getAbsolutePath() + "/adminDataBase.txt";
+        String routeEval = new File("./src").getAbsolutePath() + "/evaluatorDataBase.txt";
 
         String line;
         boolean userORpass = false;
@@ -45,7 +47,7 @@ public class PerfilDisponible {
         reading.close();
 
 
-        if(fountIt != "1"){
+        if(!fountIt.equals("1")) {
             Scanner reading2 = null;
             try {
                 reading2 = new Scanner(new File(routeEval));
@@ -64,7 +66,7 @@ public class PerfilDisponible {
                             fountIt = "1";
                             break;
                         }
-                    }else{
+                    } else {
                         userORpass = false;
                     }
                 }

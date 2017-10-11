@@ -13,18 +13,17 @@ import java.util.Scanner;
  * Created by cesar on 26/04/17.
  */
 public class ControlAcceso {
-    public String ControlAcceso(String user, String password, String action){
 
-
+    public String ControlAccesoDirection(String user, String password, String action) {
         int option = Integer.parseInt(action);
         boolean error = true;
         boolean wrongPass = false;
         String isitAdmin = "0"; //0 not found, 1 Evaluator, 2 Admin, failure Can't open file, invalid Incorrect data
 
         if (option == JOptionPane.OK_OPTION) {
-                /**
-                 * Lectura y escritura de archivos para simular una base de datos
-                 * */
+            /*
+             * Lectura y escritura de archivos para simular una base de datos
+            */
             Archivos rout = new Archivos();
             String evaluatorDataBase = rout.BuscarUsuarios("evaluator");
 
@@ -41,25 +40,25 @@ public class ControlAcceso {
                         if(id.equals(line)){
                             line = word.next();
                             if(pass.equals(line)) {
-                                /**
+                                /*
                                  * Creates directory
                                  */
-                                String direction = "/home/cesar/Documents/FCC/Primavera 2017/Ingenieria de Software/Proyecto Final/src/Textos Evaluados/";
-                                direction += user+"/";
+                                String direction = new File("./src").getAbsolutePath() + "/Textos Evaluados/";
+                                direction += user + "/";
                                 File directory = new File(direction);
                                 if(!directory.exists()) {
                                     directory.mkdir();
                                 }
 
-                                /**
+                                /*
                                  * Awful cheating
                                  */
                                 try{
-                                    PrintWriter writer = new PrintWriter("/home/cesar/Documents/FCC/Primavera 2017/Ingenieria de Software/ActiveUser.txt");
+                                    PrintWriter writer = new PrintWriter(new File("./src").getAbsoluteFile() + "/Ingenieria de Software/ActiveUser.txt");
                                     writer.println(user);
                                     writer.close();
                                 } catch (IOException e) {
-                                    // do something
+                                    System.err.println("Error: " + e.getMessage());
                                 }
 
                                 error = false;
@@ -84,10 +83,10 @@ public class ControlAcceso {
             }
 
             String adminDataBase = rout.BuscarUsuarios("admin");
-            /**
-             *Administradores
-             */
-            if(error){
+            /*
+             * Administradores
+            */
+            if(error) {
                 Scanner reading2;
                 try {
                     reading2 = new Scanner(new File(adminDataBase));

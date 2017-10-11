@@ -34,7 +34,7 @@ public class GestorDeArchivos {
         Scanner reading;
         String userName = "", fileName = "";
         try {
-            reading = new Scanner(new File(new File("./src").getAbsolutePath() + "ActiveUser.txt"));
+            reading = new Scanner(new File(new File("./src").getAbsolutePath() + "/ActiveUser.txt"));
             while (reading.hasNextLine()) {
                 Scanner word = new Scanner(reading.nextLine());
                 while (word.hasNextLine()) {

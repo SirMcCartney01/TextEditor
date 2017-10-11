@@ -14,7 +14,7 @@ public class Registrar {
         String repeated;
         String file;
 
-        if(privilegios.equals("Evaluador")){
+        if(privilegios.equals("Evaluador")) {
             file = new File("./src") + "/evaluatorDataBase.txt";
         } else {
             file = new File("./src/") + "/adminDataBase.txt";

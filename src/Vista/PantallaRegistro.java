@@ -53,9 +53,9 @@ public class PantallaRegistro {
             if (option == JOptionPane.OK_OPTION) {
 
                 if (!user.getText().isEmpty() && !password.getText().isEmpty() && !country.getText().isEmpty() && !birthDate.getText().isEmpty()) {
-                    /**
+                    /*
                      * Clase Registrar, agrega al usuario
-                     * */
+                    */
                     String usu = user.getText();
                     String contra = password.getText();
                     String pais = country.getText();

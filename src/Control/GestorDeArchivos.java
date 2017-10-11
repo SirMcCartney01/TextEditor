@@ -34,7 +34,7 @@ public class GestorDeArchivos {
         Scanner reading;
         String userName = "", fileName = "";
         try {
-            reading = new Scanner(new File("/home/cesar/Documents/FCC/Primavera 2017/Ingenieria de Software/ActiveUser.txt"));
+            reading = new Scanner(new File(new File("./src").getAbsolutePath() + "ActiveUser.txt"));
             while (reading.hasNextLine()) {
                 Scanner word = new Scanner(reading.nextLine());
                 while (word.hasNextLine()) {
@@ -48,7 +48,7 @@ public class GestorDeArchivos {
         }
 
         try {
-            reading = new Scanner(new File("/home/cesar/Documents/FCC/Primavera 2017/Ingenieria de Software/ActiveFile.txt"));
+            reading = new Scanner(new File(new File("./src").getAbsolutePath() + "/ActiveFile.txt"));
             while (reading.hasNextLine()) {
                 Scanner word = new Scanner(reading.nextLine());
                 while (word.hasNextLine()) {
@@ -61,8 +61,8 @@ public class GestorDeArchivos {
             JOptionPane.showMessageDialog(null,"THIS MESSAGE SHOULD NEVER BE DISPLAYED","Error",JOptionPane.ERROR_MESSAGE);
         }
 
-        String rout = "/home/cesar/Documents/FCC/Primavera 2017/Ingenieria de Software/Proyecto Final/src/Textos Evaluados/";
-        rout += userName+"/"+fileName+"/";
+        String rout = new File("./src").getAbsolutePath() + "/Textos Evaluados/";
+        rout += userName +"/" + fileName + "/";
 
         File directory = new File(rout);
         if(!directory.exists()) {
@@ -89,7 +89,7 @@ public class GestorDeArchivos {
 
     public String EvaluacionesCompletas(){
 
-        String fileRout = "/home/cesar/Documents/FCC/Primavera 2017/Ingenieria de Software/Proyecto Final/src/Textos Evaluados/";
+        String fileRout = new File("./src").getAbsolutePath() + "/Textos Evaluados/";
         File folder = new File(fileRout);
         File[] listOfFiles = folder.listFiles();
 
@@ -97,19 +97,19 @@ public class GestorDeArchivos {
         String userName;
         int numberOfFolders = 0, numberOfFiles, evaluationPossible = 0;
 
-        for (int i = 0; i < listOfFiles.length; i++) {
-            if (listOfFiles[i].isDirectory()) {
+        for (File listOfFile : listOfFiles) {
+            if (listOfFile.isDirectory()) {
                 numberOfFiles = 0;
-                String dynamicRout = "/home/cesar/Documents/FCC/Primavera 2017/Ingenieria de Software/Proyecto Final/src/Textos Evaluados/";
-                userName = listOfFiles[i].getName();
+                String dynamicRout = new File("./src").getAbsolutePath() + "/Textos Evaluados/";
+                userName = listOfFile.getName();
                 dynamicRout += userName;
                 String files = archivos.BuscaArchivosDeEvaluacion(dynamicRout);
                 numberOfFiles += Integer.parseInt(files);
-                if(numberOfFiles > 0){
+                if (numberOfFiles > 0) {
                     evaluationPossible++;
                 }
                 numberOfFolders++;
-                System.out.println("User "+userName+" has evaluated "+numberOfFiles+" files");
+                System.out.println("User " + userName + " has evaluated " + numberOfFiles + " files");
             }
         }
 

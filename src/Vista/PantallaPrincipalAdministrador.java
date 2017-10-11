@@ -15,9 +15,9 @@ import java.util.Scanner;
  * Created by cesar on 26/04/17.
  */
 public class PantallaPrincipalAdministrador extends JPanel{
+
     public PantallaPrincipalAdministrador() {
         initPanel(this);
-
     }
 
     private void initPanel(JPanel panel) {
@@ -60,9 +60,9 @@ public class PantallaPrincipalAdministrador extends JPanel{
         // Create and add the style
         final Style heading2Style = sc.addStyle("Heading2", null);
         heading2Style.addAttribute(StyleConstants.Foreground, Color.black);
-        heading2Style.addAttribute(StyleConstants.FontSize, new Integer(16));
+        heading2Style.addAttribute(StyleConstants.FontSize, 16);
         heading2Style.addAttribute(StyleConstants.FontFamily, "serif");
-        heading2Style.addAttribute(StyleConstants.Bold, new Boolean(true));
+        heading2Style.addAttribute(StyleConstants.Bold, true);
 
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
@@ -74,6 +74,7 @@ public class PantallaPrincipalAdministrador extends JPanel{
                         // Finally, apply the style to the heading
                         doc.setParagraphAttributes(0, 1, heading2Style, false);
                     } catch (BadLocationException e) {
+                        System.err.println("Error: " + e.getMessage());
                     }
                 }
             });
@@ -95,9 +96,9 @@ public class PantallaPrincipalAdministrador extends JPanel{
         // Create and add the style
         final Style heading2Style2 = sc.addStyle("Heading2", null);
         heading2Style2.addAttribute(StyleConstants.Foreground, Color.black);
-        heading2Style2.addAttribute(StyleConstants.FontSize, new Integer(16));
+        heading2Style2.addAttribute(StyleConstants.FontSize, 16);
         heading2Style2.addAttribute(StyleConstants.FontFamily, "serif");
-        heading2Style2.addAttribute(StyleConstants.Bold, new Boolean(true));
+        heading2Style2.addAttribute(StyleConstants.Bold, true);
 
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
@@ -109,6 +110,7 @@ public class PantallaPrincipalAdministrador extends JPanel{
                         // Finally, apply the style to the heading
                         doc2.setParagraphAttributes(0, 1, heading2Style2, false);
                     } catch (BadLocationException e) {
+                        System.err.println("Error: " + e.getMessage());
                     }
                 }
             });
@@ -131,9 +133,9 @@ public class PantallaPrincipalAdministrador extends JPanel{
         // Create and add the style
         final Style heading2Style3 = sc.addStyle("Heading2", null);
         heading2Style3.addAttribute(StyleConstants.Foreground, Color.black);
-        heading2Style3.addAttribute(StyleConstants.FontSize, new Integer(16));
+        heading2Style3.addAttribute(StyleConstants.FontSize, 16);
         heading2Style3.addAttribute(StyleConstants.FontFamily, "serif");
-        heading2Style3.addAttribute(StyleConstants.Bold, new Boolean(true));
+        heading2Style3.addAttribute(StyleConstants.Bold, true);
 
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
@@ -202,7 +204,7 @@ public class PantallaPrincipalAdministrador extends JPanel{
                 String text = "", text2 = "", text3 = "";
                 Scanner reading, reading2, reading3;
                 String afectoFile = "Afecto.txt", juicioFile = "Juicio.txt", apreciacionFile = "Apreciacion.txt";
-                String rout = "/home/cesar/Documents/FCC/Primavera 2017/Ingenieria de Software/Proyecto Final/src/Union de textos/";
+                String rout = new File("./src").getAbsolutePath() + "/Union de textos/";
                 try {
                     reading = new Scanner(new File(rout+afectoFile));
                     while (reading.hasNextLine()) {
@@ -219,8 +221,8 @@ public class PantallaPrincipalAdministrador extends JPanel{
                                 text2 += word2.nextLine() + "\n";
                             }
                         }
-                    }catch (Exception e){
-
+                    } catch (Exception e) {
+                        System.err.println("Error: " + e.getMessage());
                     }
                         try {
                             reading3 = new Scanner(new File(rout + juicioFile));
@@ -230,8 +232,8 @@ public class PantallaPrincipalAdministrador extends JPanel{
                                     text3 += word3.nextLine() + "\n";
                                 }
                             }
-                        }catch (Exception e){
-
+                        } catch (Exception e) {
+                            System.err.println("Error: " + e.getMessage());
                         }
                     afecto.setVisible(true);
                     juicio.setVisible(true);

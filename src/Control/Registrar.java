@@ -1,10 +1,7 @@
 package Control;
 
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 
 /**
  * Created by cesar on 2/05/17.
@@ -18,13 +15,13 @@ public class Registrar {
         String file;
 
         if(privilegios.equals("Evaluador")){
-            file = "/home/cesar/Documents/FCC/Primavera 2017/Ingenieria de Software/Proyecto Final/src/evaluatorDataBase.txt";
-        }else{
-            file = "/home/cesar/Documents/FCC/Primavera 2017/Ingenieria de Software/Proyecto Final/src/adminDataBase.txt";
+            file = new File("./src") + "/evaluatorDataBase.txt";
+        } else {
+            file = new File("./src/") + "/adminDataBase.txt";
         }
-        /**
+        /*
          * New admin
-         * */
+        */
         PerfilDisponible perfilDisponible = new PerfilDisponible();
 
         repeated = perfilDisponible.perfilDisponible(usu);
